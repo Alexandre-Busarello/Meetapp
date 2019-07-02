@@ -1,7 +1,3 @@
-import express from 'express';
+import app from './app';
 
-const server = express();
-
-server.use(express.json());
-
-server.listen(4444);
+app.listen(4444);
