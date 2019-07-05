@@ -2,6 +2,9 @@ import { isBefore } from 'date-fns';
 import { Op } from 'sequelize';
 import Meetup from '../models/Meetup';
 import Subscription from '../models/Subscription';
+import Queue from '../../lib/Queue';
+import SubscriptionMail from '../jobs/SubscriptionMail';
+import User from '../models/User';
 
 class MeetupController {
   async index(req, res) {
@@ -68,6 +71,32 @@ class MeetupController {
     const subscription = await Subscription.create({
       meetup_id,
       user_id: req.userId,
+    });
+
+    const subscriptionToMail = await Subscription.findByPk(subscription.id, {
+      include: [
+        {
+          model: Meetup,
+          as: 'meetup',
+          attributes: ['description'],
+          include: [
+            {
+              model: User,
+              as: 'owner',
+              attributes: ['name', 'email'],
+            },
+          ],
+        },
+        {
+          model: User,
+          as: 'user',
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    Queue.add(SubscriptionMail.key, {
+      subscription: subscriptionToMail,
     });
 
     return res.json(subscription);
