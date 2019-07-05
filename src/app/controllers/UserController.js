@@ -19,7 +19,7 @@ class UserController {
 
     const { email } = req.body;
 
-    const user = User.findOne({ email });
+    const user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({ error: 'User already exists' });
     }
@@ -55,6 +55,9 @@ class UserController {
     const { email, oldPassword } = req.body;
 
     const user = await User.findByPk(req.userId);
+    if (!user) {
+      return res.status(400).json({ error: 'User not found' });
+    }
 
     if (email && email !== user.email) {
       const userExists = await User.findOne({ email });
