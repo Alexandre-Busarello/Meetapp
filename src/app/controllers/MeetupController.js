@@ -19,8 +19,8 @@ class MeetupController {
       },
       order: ['date'],
       attributes: ['id', 'description', 'date'],
-      limit: 20,
-      offset: 20 * (page - 1),
+      limit: 10,
+      offset: 10 * (page - 1),
       include: [
         {
           model: File,
