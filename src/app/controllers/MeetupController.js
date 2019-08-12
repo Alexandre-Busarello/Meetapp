@@ -18,14 +18,14 @@ class MeetupController {
         },
       },
       order: ['date'],
-      attributes: ['id', 'description', 'date'],
+      attributes: ['id', 'title', 'description', 'date'],
       limit: 10,
       offset: 10 * (page - 1),
       include: [
         {
           model: File,
           as: 'banner',
-          attributes: ['id', 'path'],
+          attributes: ['id', 'path', 'url'],
         },
         {
           model: User,
@@ -40,6 +40,7 @@ class MeetupController {
 
   async store(req, res) {
     const schema = Yup.object().shape({
+      title: Yup.string().required(),
       description: Yup.string().required(),
       location: Yup.string().required(),
       date: Yup.date().required(),
@@ -68,7 +69,7 @@ class MeetupController {
 
     // Busca após incluir para retornar o objeto com as referencias
     const meetup = await Meetup.findByPk(id, {
-      attributes: ['id', 'description', 'location', 'date'],
+      attributes: ['id', 'title', 'description', 'location', 'date'],
       include: [
         {
           model: File,
@@ -119,14 +120,20 @@ class MeetupController {
       return res.status(400).json({ error: 'Date in the past is not allowed' });
     }
 
-    const { id, description, location, banner, user } = await req.meetup.update(
-      {
-        ...req.body,
-      }
-    );
+    const {
+      id,
+      title,
+      description,
+      location,
+      banner,
+      user,
+    } = await req.meetup.update({
+      ...req.body,
+    });
 
     return res.json({
       id,
+      title,
       description,
       location,
       banner,
@@ -145,12 +152,13 @@ class MeetupController {
       return res.status(400).json({ error: 'The meetup has already occurred' });
     }
 
-    const { id, description, location, banner, user } = req.meetup;
+    const { id, title, description, location, banner, user } = req.meetup;
 
     await req.meetup.destroy();
 
     return res.json({
       id,
+      title,
       description,
       location,
       banner,
