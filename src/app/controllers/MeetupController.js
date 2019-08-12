@@ -58,7 +58,10 @@ class MeetupController {
       return res.status(400).json({ error: 'File of banner not found' });
     }
 
-    if (date && isBefore(parseISO(date), new Date())) {
+    const checkDate = parseISO(date);
+    const actualDate = new Date();
+
+    if (date && isBefore(checkDate, actualDate)) {
       return res.status(400).json({ error: 'Date in the past is not allowed' });
     }
 
@@ -116,7 +119,10 @@ class MeetupController {
       return res.status(400).json({ error: 'File of banner not found' });
     }
 
-    if (date && isBefore(parseISO(date), new Date())) {
+    const checkDate = parseISO(date);
+    const actualDate = new Date();
+
+    if (date && isBefore(checkDate, actualDate)) {
       return res.status(400).json({ error: 'Date in the past is not allowed' });
     }
 
