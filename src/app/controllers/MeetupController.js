@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import { isBefore, parseISO, startOfDay, endOfDay } from 'date-fns';
-import { Op } from 'sequelize';
+import { Sequelize, Op } from 'sequelize';
 import Meetup from '../models/Meetup';
 import File from '../models/File';
 import User from '../models/User';
@@ -12,13 +12,15 @@ class MeetupController {
     const endDate = endOfDay(parseISO(date));
     const meetups = await Meetup.findAll({
       where: {
-        user_id: req.userId,
         date: {
           [Op.between]: [startDate, endDate],
         },
+        user_id: Sequelize.literal(
+          `"Meetup"."id" NOT IN (SELECT meetup_id FROM subscriptions S WHERE S.user_id=${req.userId})`
+        ),
       },
       order: ['date'],
-      attributes: ['id', 'title', 'description', 'date'],
+      attributes: ['id', 'title', 'description', 'location', 'date'],
       limit: 10,
       offset: 10 * (page - 1),
       include: [
