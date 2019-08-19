@@ -1,22 +1,21 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { withNavigationFocus } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { format, subDays, addDays } from 'date-fns';
-import pt from 'date-fns/locale/pt';
+import { subDays, addDays } from 'date-fns';
 
 import { fetchMeetupsRequest } from '~/store/modules/meetup/actions';
 
 import Background from '~/components/Background';
 import MeetupList from '~/components/MeetupList';
+import DateInput from '~/components/DateInput';
 
 import {
   LoadingContainer,
   Container,
   Header,
   PreviousDay,
-  DateText,
   NextDay,
 } from './styles';
 
@@ -26,11 +25,6 @@ function Dashboard({ isFocused }) {
   const loading = useSelector(store => store.meetup.loading);
 
   const [date, setDate] = useState(new Date());
-
-  const dateFormatted = useMemo(
-    () => format(date, "dd 'de' MMMM", { locale: pt }),
-    [date]
-  );
 
   useEffect(() => {
     if (isFocused) {
@@ -62,7 +56,7 @@ function Dashboard({ isFocused }) {
             <PreviousDay type="button" onPress={handlePrevDay}>
               <Icon name="chevron-left" size={36} color="#FFF" />
             </PreviousDay>
-            <DateText>{dateFormatted}</DateText>
+            <DateInput date={date} onChange={setDate} />
             <NextDay type="button" onPress={handleNextDay}>
               <Icon name="chevron-right" size={36} color="#FFF" />
             </NextDay>

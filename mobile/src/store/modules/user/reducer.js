@@ -50,7 +50,6 @@ export default function auth(state = INITIAL_STATE, action) {
         break;
       }
       case '@auth/FETCH_SUBSCRIPTIONS_FAILURE': {
-        draft.profile = null;
         draft.loadingSubscriptions = false;
         break;
       }

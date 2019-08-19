@@ -22,7 +22,7 @@ import {
 } from './styles';
 
 export default function Meetup({ data, onSubscription, onCancel }) {
-  const loading = useSelector(store => store.meetup.loading);
+  const isSubscribing = useSelector(store => store.meetup.isSubscribing);
 
   const dateParsed = useMemo(() => {
     return format(parseISO(data.date), "dd 'de' MMMM, 'às' HH'h'", {
@@ -55,13 +55,13 @@ export default function Meetup({ data, onSubscription, onCancel }) {
         </Owner>
 
         {!data.subscribed && onSubscription && (
-          <SubscriptionButton loading={loading} onPress={onSubscription}>
+          <SubscriptionButton loading={isSubscribing} onPress={onSubscription}>
             Realizar inscrição
           </SubscriptionButton>
         )}
 
         {data.subscribed && onCancel && (
-          <SubscriptionButton loading={loading} onPress={onCancel}>
+          <SubscriptionButton loading={isSubscribing} onPress={onCancel}>
             Cancelar inscrição
           </SubscriptionButton>
         )}

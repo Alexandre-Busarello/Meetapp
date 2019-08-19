@@ -32,3 +32,9 @@ export const Separator = styled.View`
   background: rgba(255, 255, 255, 0.2);
   margin: 20px 0 30px;
 `;
+
+export const ErrorMessage = styled.Text`
+  font-size: 12px;
+  color: #d44059;
+  margin-bottom: 10px;
+`;

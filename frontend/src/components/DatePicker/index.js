@@ -2,13 +2,13 @@ import React, { useRef, useEffect, useState } from 'react';
 import ReactDatePicker, { registerLocale } from 'react-datepicker';
 import PropTypes from 'prop-types';
 import { parseISO } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
+import pt from 'date-fns/locale/pt';
 
 import { useField } from '@rocketseat/unform';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-registerLocale('br', ptBR);
+registerLocale('br', pt);
 
 export default function DatePicker({ name, placeholderText }) {
   const ref = useRef(null);

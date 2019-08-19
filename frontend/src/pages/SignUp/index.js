@@ -27,7 +27,7 @@ export default function SignUp() {
 
   return (
     <>
-      <img src={logo} alt="GoBarber" />
+      <img src={logo} alt="Meetapp" />
 
       <Form schema={schema} onSubmit={handleSubmit}>
         <Input name="name" placeholder="Nome completo" />

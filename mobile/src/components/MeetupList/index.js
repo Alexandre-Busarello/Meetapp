@@ -9,7 +9,7 @@ import {
 
 import Meetup from '~/components/Meetup';
 
-import { MeetupFlatList } from './styles';
+import { MeetupFlatList, MeetupsNotFound, NotFoundText } from './styles';
 
 export default function MeetupList({ date }) {
   const dispatch = useDispatch();
@@ -32,19 +32,29 @@ export default function MeetupList({ date }) {
   }
 
   return (
-    <MeetupFlatList
-      data={meetups}
-      keyExtractor={item => String(item.id)}
-      onRefresh={handleRefresh}
-      refreshing={loading || isRefreshing}
-      onEndReachedThreshold={0.3}
-      onEndReached={handleEndReached}
-      renderItem={({ item }) => (
-        <Meetup
-          data={item}
-          onSubscription={() => handleSubscription(item.id)}
+    <>
+      {meetups.length > 0 ? (
+        <MeetupFlatList
+          data={meetups}
+          keyExtractor={item => String(item.id)}
+          onRefresh={handleRefresh}
+          refreshing={loading || isRefreshing}
+          onEndReachedThreshold={0.3}
+          onEndReached={handleEndReached}
+          renderItem={({ item }) => (
+            <Meetup
+              data={item}
+              onSubscription={() => handleSubscription(item.id)}
+            />
+          )}
         />
+      ) : (
+        <MeetupsNotFound>
+          <NotFoundText>
+            Nenhum meetup encontrado para a data selecionada
+          </NotFoundText>
+        </MeetupsNotFound>
       )}
-    />
+    </>
   );
 }

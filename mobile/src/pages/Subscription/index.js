@@ -9,7 +9,7 @@ import { fetchSubscriptionsRequest } from '~/store/modules/user/actions';
 
 import Background from '~/components/Background';
 import Meetup from '~/components/Meetup';
-import { MeetupFlatList } from './styles';
+import { MeetupFlatList, SubsNotFound, NotFoundText } from './styles';
 
 function Subscription({ isFocused }) {
   const dispatch = useDispatch();
@@ -35,18 +35,24 @@ function Subscription({ isFocused }) {
 
   return (
     <Background>
-      <MeetupFlatList
-        data={subscriptions}
-        keyExtractor={item => String(item.id)}
-        onRefresh={handleRefresh}
-        refreshing={loadingSubscriptions}
-        renderItem={({ item }) => (
-          <Meetup
-            data={item}
-            onCancel={() => handleCancelSubscription(item.id)}
-          />
-        )}
-      />
+      {subscriptions.length > 0 ? (
+        <MeetupFlatList
+          data={subscriptions}
+          keyExtractor={item => String(item.id)}
+          onRefresh={handleRefresh}
+          refreshing={loadingSubscriptions}
+          renderItem={({ item }) => (
+            <Meetup
+              data={item}
+              onCancel={() => handleCancelSubscription(item.id)}
+            />
+          )}
+        />
+      ) : (
+        <SubsNotFound>
+          <NotFoundText>Você ainda não fez nenhuma inscrição</NotFoundText>
+        </SubsNotFound>
+      )}
     </Background>
   );
 }

@@ -91,7 +91,7 @@ class MeetupController {
         {
           model: Meetup,
           as: 'meetup',
-          attributes: ['description'],
+          attributes: ['title'],
           include: [
             {
               model: User,

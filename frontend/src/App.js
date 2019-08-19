@@ -9,7 +9,7 @@ import './config/ReactotronConfig';
 import Routes from './routes';
 import history from './services/history';
 
-import { store, persistor } from '~/store';
+import { store, persistor } from './store';
 
 import GlobalStyled from './styles/global';
 

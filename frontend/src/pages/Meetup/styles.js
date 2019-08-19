@@ -9,7 +9,7 @@ export const Container = styled.div`
   form {
     padding-bottom: 50px;
 
-    button {
+    button[type='submit'] {
       display: flex;
       align-items: center;
       align-content: center;

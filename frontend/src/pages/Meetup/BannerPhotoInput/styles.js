@@ -8,7 +8,7 @@ export const Container = styled.div`
     border-radius: 4px;
     align-items: center;
     justify-content: center;
-    height: 250px;
+    height: 300px;
     background-color: #18141d;
 
     &:hover {

@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   page: 1,
   loading: false,
   isRefreshing: false,
+  isSubscribing: false,
 };
 
 export default function auth(state = INITIAL_STATE, action) {
@@ -20,11 +21,17 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.isRefreshing = true;
         break;
       }
+      case '@meetup/SUBSCRIPTION_REQUEST':
+      case '@meetup/CANCEL_SUB_REQUEST': {
+        draft.isSubscribing = true;
+        break;
+      }
       case '@meetup/FETCH_SUCCESS': {
         const { meetups } = action.payload;
         draft.list = meetups;
         draft.loading = false;
         draft.isRefreshing = false;
+        draft.isSubscribing = false;
         break;
       }
       case '@meetup/FETCH_MORE_SUCCESS': {
@@ -40,11 +47,17 @@ export default function auth(state = INITIAL_STATE, action) {
         const { meetup_id } = action.payload.subscription;
         const meetup = draft.list.find(item => item.id === meetup_id);
         meetup.subscribed = true;
+        draft.isSubscribing = false;
+        break;
+      }
+      case '@meetup/CANCEL_SUB_SUCCESS': {
+        draft.isSubscribing = false;
         break;
       }
       case '@meetup/FAILURE': {
         draft.loading = false;
         draft.isRefreshing = false;
+        draft.isSubscribing = false;
         break;
       }
       default:

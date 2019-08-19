@@ -82,7 +82,7 @@ export const CustomButton = styled.button`
 `;
 
 export const Banner = styled.div`
-  height: 250px;
+  height: 300px;
   display: flex;
   border-radius: 4px;
   align-items: center;
