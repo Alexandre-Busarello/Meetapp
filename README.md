@@ -39,7 +39,7 @@ A pagina web da aplicação foi construida com <b>ReactJS</b> utilizando:
 - Immer
 - Yup (Validação de Schema)
 - React Router DOM (Roteamento)
-- Reactotron (Ferramento para auxiliar Debug)
+- Reactotron (Ferramenta para auxiliar Debug)
 - ESLint
 - Prettier
 
