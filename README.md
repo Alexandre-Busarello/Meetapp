@@ -73,12 +73,15 @@ Para rodar a aplicação:
 
 <b>Android</b>
 ```
+yarn
+react-native link
 react-native run-android
 ```
 
 <b>IOS</b>
 ```
 yarn
+react-native link
 react-native run-ios
 ```
 
