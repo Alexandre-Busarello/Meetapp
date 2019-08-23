@@ -1,6 +1,7 @@
 # Meetapp
 
 Desafio feito para o Bootcamp da Rocketseat. É uma aplicação para gestão de eventos e inscrições de usuários similar ao Meetup.
+Para simplificar o envio, juntei todas as aplicações no repositório e separei por pastas (backend, frontend e mobile). Porem o ideal é fazer um repositório para a API (backend), outro para a pagina web (frontend) e outro para aplicação mobile.
 
 <b>Backend</b>
 
@@ -23,6 +24,7 @@ O backend da aplicação foi feito em <b>Node.JS</b> e utiliza:
 Para rodar a aplicação:
 
 ```
+yarn
 yarn run dev
 ```
 
@@ -46,7 +48,8 @@ A pagina web da aplicação foi construida com <b>ReactJS</b> utilizando:
 Para rodar a aplicação:
 
 ```
-react start
+yarn
+yarn start
 ```
 
 <b>Mobile</b>
@@ -75,6 +78,7 @@ react-native run-android
 
 <b>IOS</b>
 ```
+yarn
 react-native run-ios
 ```
 
