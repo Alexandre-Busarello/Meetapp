@@ -23,6 +23,22 @@ O backend da aplicação foi feito em <b>Node.JS</b> e utiliza:
 
 Para rodar a aplicação (prompt precisa estar na pasta backend):
 
+- Criar containers do Postgres e Redis:
+
+```
+docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
+docker run --name redismeetapp -p 6379:6379 -d redis
+```
+- Configurar os HOSTs corretos no arquivo .env da aplicação 
+
+- Executar as migrations para criar o banco: 
+
+```
+
+```
+
+- Executar a aplicação:
+
 ```
 yarn
 yarn run dev
@@ -64,7 +80,7 @@ A aplicação mobile foi construida com <b>React Native</b> utilizando:
 - Immer
 - Yup (Validação de Schema)
 - React Navigation (Navegação)
-- Reactotron (Ferramento para auxiliar Debug)
+- Reactotron (Ferramenta para auxiliar Debug)
 - ESLint
 - Prettier
 
