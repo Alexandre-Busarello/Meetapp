@@ -34,7 +34,7 @@ docker run --name redismeetapp -p 6379:6379 -d redis
 - Executar as migrations para criar o banco: 
 
 ```
-
+yarn sequelize db:migrate
 ```
 
 - Executar a aplicação:
