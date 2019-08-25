@@ -44,6 +44,12 @@ yarn
 yarn run dev
 ```
 
+- Executar aplicação para envio de e-mail:
+
+```
+yarn run queue
+```
+
 <b>Frontend</b>
 
 A pagina web da aplicação foi construida com <b>ReactJS</b> utilizando:
