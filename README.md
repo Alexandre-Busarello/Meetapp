@@ -21,7 +21,7 @@ O backend da aplicação foi feito em <b>Node.JS</b> e utiliza:
 - Nodemon
 - Sucrase
 
-Para rodar a aplicação:
+Para rodar a aplicação (prompt precisa estar na pasta backend):
 
 ```
 yarn
@@ -45,7 +45,7 @@ A pagina web da aplicação foi construida com <b>ReactJS</b> utilizando:
 - ESLint
 - Prettier
 
-Para rodar a aplicação:
+Para rodar a aplicação (prompt precisa estar na pasta frontend):
 
 ```
 yarn
@@ -69,7 +69,7 @@ A aplicação mobile foi construida com <b>React Native</b> utilizando:
 - Prettier
 
 
-Para rodar a aplicação:
+Para rodar a aplicação (prompt precisa estar na pasta mobile):
 
 <b>Android</b>
 ```
