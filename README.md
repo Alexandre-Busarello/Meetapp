@@ -23,6 +23,8 @@ O backend da aplicação foi feito em <b>Node.JS</b> e utiliza:
 
 Para rodar a aplicação (prompt precisa estar na pasta backend):
 
+- Executar 2 containers, um com a imagem do Redis e outro com a imagem do Postgres, configurar os HOSTs corretos no arquivo .env e executar os comandos abaixo:
+
 ```
 yarn
 yarn run dev
