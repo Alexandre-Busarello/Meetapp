@@ -66,7 +66,7 @@ A aplicação mobile foi construida com <b>React Native</b> utilizando:
 - Immer
 - Yup (Validação de Schema)
 - React Navigation (Navegação)
-- Reactotron (Ferramento para auxiliar Debug)
+- Reactotron (Ferramenta para auxiliar Debug)
 - ESLint
 - Prettier
 
