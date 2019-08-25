@@ -29,7 +29,7 @@ Para rodar a aplicação (prompt precisa estar na pasta backend):
 docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
 docker run --name redismeetapp -p 6379:6379 -d redis
 ```
-- Configurar os HOSTs corretos no arquivo .env da aplicação 
+- Configurar os HOSTs corretos no arquivo .env da aplicação. Sei que o arquivo .env não deveria ficar no repositório, apenas um .env de exemplo, porem como não é uma aplicação apra fins de uso real, apenas para aprendizado e para o teste da rocketseat, deixei o arquivo.
 
 - Executar as migrations para criar o banco: 
 
