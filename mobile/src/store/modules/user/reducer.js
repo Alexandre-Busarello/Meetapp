@@ -27,10 +27,6 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
-      case '@auth/SIGN_OUT': {
-        draft.profile = null;
-        break;
-      }
       case '@user/FETCH_SUBSCRIPTIONS_REQUEST': {
         draft.loadingSubscriptions = true;
         break;
@@ -53,7 +49,11 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.loadingSubscriptions = false;
         break;
       }
+      case '@auth/SIGN_OUT': {
+        return INITIAL_STATE;
+      }
       default:
     }
+    return draft;
   });
 }

@@ -60,7 +60,11 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.isSubscribing = false;
         break;
       }
+      case '@auth/SIGN_OUT': {
+        return INITIAL_STATE;
+      }
       default:
     }
+    return draft;
   });
 }

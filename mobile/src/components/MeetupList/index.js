@@ -16,7 +16,7 @@ export default function MeetupList({ date }) {
 
   const meetups = useSelector(store => store.meetup.list);
   const loading = useSelector(store => store.meetup.loading);
-  const isRefreshing = useSelector(store => store.meetup.isRefreshing);
+  const isRefreshing = useSelector(store => !!store.meetup.isRefreshing);
   const page = useSelector(store => store.meetup.page);
 
   function handleSubscription(meetupId) {

@@ -10,6 +10,8 @@ import {
   cancelSubMeetupSuccess,
 } from './actions';
 
+import { signOut } from '~/store/modules/auth/actions';
+
 export function* fetchMeetups({ payload }) {
   try {
     const response = yield call(api.get, 'meetups', {
@@ -22,11 +24,16 @@ export function* fetchMeetups({ payload }) {
 
     yield put(fetchMeetupsSuccess(response.data));
   } catch (err) {
-    Alert.alert(
-      'Falha ao obter meetups',
-      'Houve um erro ao obter os meetups, tente novamente mais tarde'
-    );
-    yield put(meetupFailure());
+    if (err.response && err.response.status === 401) {
+      yield put(meetupFailure());
+      yield put(signOut());
+    } else {
+      Alert.alert(
+        'Falha ao obter meetups',
+        'Houve um erro ao obter os meetups, tente novamente mais tarde'
+      );
+      yield put(meetupFailure());
+    }
   }
 }
 
