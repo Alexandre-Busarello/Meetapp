@@ -8,18 +8,16 @@ import { Container } from './styles';
 import { updateProfileRequest } from '~/store/modules/user/actions';
 
 const schema = Yup.object().shape({
-  name: Yup.string().required('dadsadsa'),
+  name: Yup.string().required('O campo nome é obrigatório'),
   email: Yup.string(),
-  oldPassword: Yup.string().min(6, 'O campo precisa ter no mínimo 6 digitos'),
-  password: Yup.string()
-    .min(6)
-    .when('oldPassword', (oldPassword, field) =>
-      oldPassword
-        ? field
-            .min(6, 'O campo precisa ter no mínimo 6 digitos')
-            .required('O campo de nova senha é obrigatório')
-        : field
-    ),
+  oldPassword: Yup.string(),
+  password: Yup.string().when('oldPassword', (oldPassword, field) =>
+    oldPassword
+      ? field
+          .min(6, 'O campo precisa ter no mínimo 6 digitos')
+          .required('O campo de nova senha é obrigatório')
+      : field
+  ),
   confirmPassword: Yup.string().when('password', (password, field) =>
     password
       ? field
